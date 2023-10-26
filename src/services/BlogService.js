@@ -27,6 +27,11 @@ class BlogService {
         const res = await api.post('api/blogs', blogData)
         AppState.blogs.unshift(new Blog(res.data))
     }
+    async getCreatorById(creatorId) {
+        const res = await api.get(`api/blogs/creator/${creatorId}`)
+        AppState.activeCreator = res.data
+        logger.log(res.data)
+    }
 }
 
 export const blogService = new BlogService
