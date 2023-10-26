@@ -13,9 +13,8 @@
 
 
 <script>
-import { AppState } from '../AppState';
-import { computed, reactive, onMounted } from 'vue';
 import { Blog } from '../models/Blog';
+
 export default {
     props: {
         blogProp: {

@@ -11,6 +11,22 @@ class BlogService {
         AppState.blogs = newBlog.map(pojo => new Blog(pojo))
         logger.log(AppState.blogs)
     }
+
+    async getBlogById(blogId) {
+        const res = await api.get(`api/blogs/${blogId}`)
+        AppState.activeBlog = new Blog(res.data)
+        // logger.log('active blog', AppState.activeBlog)
+    }
+
+    async clearData() {
+        AppState.activeBlog = null
+    }
+
+    // AUTHENTICATION REQUIRED
+    async createBlog(blogData) {
+        const res = await api.post('api/blogs', blogData)
+        AppState.blogs.unshift(new Blog(res.data))
+    }
 }
 
 export const blogService = new BlogService

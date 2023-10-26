@@ -1,14 +1,18 @@
 <template>
   <div class="container-fluid">
     <div class="row justify-content-center">
-      <div class="col-12 text-center mb-4">
+      <div class="col-12 justify-content-center mb-4 d-flex p-3">
         <h1>Blogger</h1>
+        <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Add Blog
+        </button>
       </div>
       <div v-for="blog in blogs" :key="blog.id" class="col-8 my-3">
         <BlogCardComponent :blogProp="blog" />
       </div>
     </div>
   </div>
+  <BlogFormComponent />
 </template>
 
 <script>
@@ -18,6 +22,7 @@ import { logger } from '../utils/Logger';
 import { blogService } from '../services/BlogService.js'
 import { AppState } from '../AppState.js'
 import BlogCardComponent from '../components/BlogCardComponent.vue';
+import BlogFormComponent from '../components/BlogFormComponent.vue';
 
 export default {
   setup() {
@@ -34,9 +39,10 @@ export default {
     });
     return {
       blogs: computed(() => AppState.blogs),
+
     };
   },
-  components: { BlogCardComponent }
+  components: { BlogCardComponent, BlogFormComponent }
 }
 </script>
 
